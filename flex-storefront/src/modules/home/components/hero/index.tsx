@@ -33,13 +33,11 @@ const Hero = () => {
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(interval); // Clear interval on component unmount
-  }, []);
+  }, [slides.length]); // Add slides.length to dependencies
 
   return (
     <section className="bg-gradient-to-r from-purple-400 via-pink-500 to-indigo-600">
-      <motion.div
-        className="relative overflow-hidden min-h-screen"
-      >
+      <motion.div className="relative overflow-hidden min-h-screen">
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
           style={{ backgroundImage: `url(${slides[slideIndex].backgroundImage})` }}
