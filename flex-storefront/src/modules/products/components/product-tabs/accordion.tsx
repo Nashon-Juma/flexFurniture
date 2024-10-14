@@ -8,10 +8,15 @@ type AccordionItemProps = AccordionPrimitive.AccordionItemProps & {
   description?: string;
   customTrigger?: React.ReactNode;
   forceMountContent?: boolean;
-  children: React.ReactNode;
+  children: React.ReactNode; // Ensure children is defined here
 };
 
-const Accordion: React.FC<React.RefAttributes<HTMLDivElement>> & {
+type AccordionProps = AccordionPrimitive.AccordionSingleProps &
+  AccordionPrimitive.AccordionMultipleProps & {
+    children: React.ReactNode; // Add children here
+  };
+
+const Accordion: React.FC<AccordionProps> & {
   Item: React.FC<AccordionItemProps>;
 } = ({ children, ...props }) => {
   return (
