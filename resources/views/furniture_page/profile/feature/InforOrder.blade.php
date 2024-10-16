@@ -23,7 +23,7 @@
                         <td>{{ $orItem->fullname }}</td>
                         <td>{{ $orItem->address }}</td>
                         <td>{{ $orItem->phone_number }}</td>
-                        <td>$ {{ $orItem->total_money }}</td>
+                        <td>Ksh. {{ $orItem->total_money }}</td>
                         <td><i class="fas fa-eye eye-icon" data-toggle="modal" data-target="#orderDetailsModal"></i></td>
                         <td>
                             <div class="modal fade" id="orderDetailsModal" tabindex="-1" role="dialog"
