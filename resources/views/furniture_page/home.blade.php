@@ -41,7 +41,11 @@
                 @foreach ($products as $product)
                     <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
                         <a class="product-item" href="{{ route('product-detail', ['id' => $product->id]) }}">
-                            <img src="{{ $product->thumbnail }}" class="img-fluid product-thumbnail">
+                            @php
+                                $thumbnail =
+                                    $product->getFirstMediaUrl('product_photos');
+                            @endphp
+                            <img src="{{ $thumbnail }}" class="img-fluid product-thumbnail">
                             <h3 class="product-title">{{ $product->product_name }}</h3>
                             <strong class="product-price">{{ '$' . number_format($product->price, 2) }}</strong>
                             <span class="icon-cross">

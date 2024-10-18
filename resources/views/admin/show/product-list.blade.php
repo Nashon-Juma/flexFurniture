@@ -30,7 +30,12 @@
                                 <td class="table-plus">
                                     <div class="name-avatar d-flex align-items-center">
                                         <div class="avatar mr-2 flex-shrink-0">
-                                            <img src="{{ asset($product->thumbnail) }}" class="border-radius-100 shadow"
+                                            @php
+                                                $thumbnail =
+                                                    $product->getFirstMediaUrl('product_photos') ?:
+                                                    asset('/client/images/sofa/Sofa2.png');
+                                            @endphp
+                                            <img src="{{ asset($thumbnail) }}" class="border-radius-100 shadow"
                                                 width="40" height="40" alt="" />
                                         </div>
                                 </td>

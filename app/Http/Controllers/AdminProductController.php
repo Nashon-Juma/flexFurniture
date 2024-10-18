@@ -31,25 +31,30 @@ class AdminProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+        public function store(Request $request)
     {
+        // Validate the request
         $request->validate([
-            'product_name' =>['required','max:255'],
-            'price' =>['required','integer'],
-            'discount' =>['required'],
-            'thumbnail' =>['required','image'],
-            'description' =>'required',
+            'product_name' => ['required', 'max:255'],
+            'price' => ['required', 'integer'],
+            'discount' => ['required'],
+            'thumbnail' => ['required', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
+            'description' => 'required',
         ]);
-        $products = new Products();
-        $products->category_id = $request->category_id;
-        $products->product_name = $request->product_name;
-        $products->price = $request->price;
-        $products->discount = $request->discount;  
-        $products->description = $request->description;
-        $products->thumbnail = $request->thumbnail;
-        $products->save();
 
-        return redirect(url('/admin/show/product-list'))->with('success','Product Added Successfully');
+        $product = new Products();
+        $product->category_id = $request->category_id;
+        $product->product_name = $request->product_name;
+        $product->price = $request->price;
+        $product->discount = $request->discount;
+        $product->description = $request->description;
+        // Save the product first to get an ID
+        $product->save();
+
+        $product->addMedia($request->file('thumbnail'))
+                ->toMediaCollection('product_photos'); // 'product_photos' is the collection name
+
+        return redirect(url('/admin/show/product-list'))->with('success', 'Product Added Successfully');
     }
 
     /**
@@ -57,7 +62,7 @@ class AdminProductController extends Controller
      */
     public function show(string $id)
     {
-        
+
     }
 
     /**

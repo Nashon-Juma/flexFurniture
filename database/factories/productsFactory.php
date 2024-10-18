@@ -21,7 +21,6 @@ class productsFactory extends Factory
             'product_name' => fake()->title(),
             'price' => rand(30,500),
             'discount' => rand(20,50),
-            'thumbnail' => fake()->imageUrl(),
             'description' => fake()->paragraph(),
         ];
     }
