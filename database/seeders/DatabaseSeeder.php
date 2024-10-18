@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         // products::factory(20)->create();
 
         // // Create 20 detail products
-        DetailProduct::factory(10)->create();
+        // DetailProduct::factory(10)->create();
 
         // // Call UserSeeder to create users
         // UserSeeder::class;
