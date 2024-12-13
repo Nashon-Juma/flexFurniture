@@ -7,7 +7,7 @@
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
             <a href="/">
-                E-FURNITURE
+                FLEX-FURNITURE
             </a>
         </h1>
         <div class="navbar-nav flex-row d-lg-none ">
