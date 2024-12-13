@@ -1,0 +1,143 @@
+@import url('https://rsms.me/inter/inter.css');
+
+:root {
+    --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto,
+        Helvetica Neue, sans-serif;
+}
+
+body {
+    font-feature-settings: 'cv03', 'cv04', 'cv11';
+}
+
+.quantities-input {
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    outline: none;
+    border: 1px solid #333;
+    border-radius: 4px;
+}
+.quantities-input.danger {
+    border: 1px solid red;
+}
+.unit-price-input {
+    width: 140px;
+    height: 30px;
+    text-align: center;
+    outline: none;
+    border: 1px solid #333;
+    border-radius: 4px;
+}
+.unit-price-input.danger {
+    border: 1px solid red;
+}
+
+.unit-price-input::-webkit-outer-spin-button,
+.unit-price-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+
+.custom-table-action {
+    display: flex;
+    align-items: center;
+}
+.custom-table-action input {
+    margin-right: 6px;
+}
+.custom-table-action button {
+    border: 1px solid #333;
+    width: 30px;
+    height: 30px;
+}
+.custom-table-action input::-webkit-outer-spin-button,
+.custom-table-action input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.custom-table-action input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+.custom-product-image {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.action-btn-icon {
+    margin: 0 !important;
+}
+
+/* custom navbar */
+.custom-navbar-nav {
+    padding-left: 10px;
+}
+.custom-navbar-nav > .nav-item {
+    border-radius: 4px;
+}
+.custom-navbar-nav > .nav-item:hover {
+    background-color: rgba(108, 122, 145, 0.09);
+}
+.custom-navbar-nav > .nav-item > .nav-link {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+}
+
+/* loading */
+.loading-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#loading svg {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    animation: rotate 2s linear infinite;
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+#loading svg circle {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke-width: 4;
+    stroke: #456dd4;
+    transform: translate(5px, 5px);
+    stroke-linecap: round;
+    stroke-dasharray: 140;
+    stroke-dashoffset: 140;
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    0%,
+    100% {
+        stroke-dashoffset: 140;
+    }
+    50% {
+        stroke-dashoffset: 0;
+    }
+    50.1% {
+        stroke-dashoffset: 280;
+    }
+}
