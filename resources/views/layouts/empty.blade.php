@@ -30,7 +30,7 @@
         <div class="container container-tight py-4">
             <div class="text-center mb-4">
                 <a href="/" class="navbar-brand navbar-brand-autodark h1 text-muted">
-                    <img src="{{ asset('favicon.png') }}" height="36" alt="">Furniture</a>
+                    <img src="{{ asset('favicon.png') }}" height="36" alt=""></a>
             </div>
             @yield('content')
         </div>
