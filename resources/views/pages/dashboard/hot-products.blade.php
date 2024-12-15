@@ -39,10 +39,18 @@
                                 <div class="product-content">
                                     <h3><a href="/products/{{ $product->product_id }}">{{ $product->name }}</a></h3>
                                     <div class="product-price">
-                                        <span
-                                            class="old-price">{{ number_format($product->detailed_product->original_price, 0, '.', ',') }}đ</span>
-                                        <span
-                                            class="new-price">{{ number_format($product->detailed_product->original_price - ($product->detailed_product->original_price * $product->detailed_product->total_discount_percentage) / 100, 0, '.', ',') }}đ</span>
+                                        @if($product->detailed_product->total_discount_percentage > 0)
+                                            <span class="old-price">
+                                                {{ number_format($product->detailed_product->original_price, 0, '.', ',') }} Ksh
+                                            </span>
+                                            <span class="new-price">
+                                                {{ number_format($product->detailed_product->original_price - ($product->detailed_product->original_price * $product->detailed_product->total_discount_percentage) / 100, 0, '.', ',') }} Ksh
+                                            </span>
+                                        @else
+                                            <span class="new-price">
+                                                {{ number_format($product->detailed_product->original_price, 0, '.', ',') }} Ksh
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

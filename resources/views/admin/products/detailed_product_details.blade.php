@@ -46,23 +46,6 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Color</label>
-                                        <div class="row g-2">
-                                            <div class="col-auto">
-                                                <label class="form-colorinput">
-                                                    <input name="color_id" type="radio"
-                                                        value="{{ $detailed_product->color->color_id }}"
-                                                        class="form-colorinput-input" readonly />
-                                                    <span class="form-colorinput-color"
-                                                        style="background-color: {{ $detailed_product->color->code }}"
-                                                        title="{{ $detailed_product->color->name }}"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
                                         <label for="size" class="form-label">Size</label>
                                         <input id="size" name="size" type="text" class="form-control"
                                             value="{{ $detailed_product->size }}" readonly>
@@ -77,9 +60,33 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
+                                        <label for="quantities" class="form-label">quantities</label>
+                                        <input id="quantities" name="quantities" type="number" class="form-control"
+                                            value="{{ $detailed_product->quantities }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
                                         <label for="warranty_month" class="form-label">Warranty Month</label>
                                         <input id="warranty_month" name="warranty_month" type="text" class="form-control"
                                             value="{{ $detailed_product->warranty_month }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label class="form-label">Color</label>
+                                        <div class="row g-2">
+                                            <div class="col-auto">
+                                                <label class="form-colorinput">
+                                                    <input name="color_id" type="radio"
+                                                        value="{{ $detailed_product->color->color_id }}"
+                                                        class="form-colorinput-input" readonly />
+                                                    <span class="form-colorinput-color"
+                                                        style="background-color: {{ $detailed_product->color->code }}"
+                                                        title="{{ $detailed_product->color->name }}"></span>
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -138,5 +145,5 @@
     <script>
         CKEDITOR.replace('editor');
     </script>
-    
+
 @endsection

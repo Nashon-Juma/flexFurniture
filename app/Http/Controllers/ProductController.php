@@ -146,7 +146,7 @@ class ProductController extends Controller
                 'tag_id' => $tag
             ]);
         }
-        return  ['product' => $product];
+        return ['product' => $product];
     }
     public function update_ui(Request $request)
     {
@@ -158,7 +158,8 @@ class ProductController extends Controller
             'brands' => Brand::all(),
             'tags' => Tag::all(),
         ];
-        return  view('admin.products.update', $data);;
+        return view('admin.products.update', $data);
+        ;
     }
     public function update(CreateProduct $request)
     {
@@ -209,7 +210,7 @@ class ProductController extends Controller
                 'product' => $product,
                 'detaild_products' => $detailed_products
             ];
-            return  view('admin.products.product_details', $data);
+            return view('admin.products.product_details', $data);
         }
         return abort(404);
     }
@@ -235,7 +236,7 @@ class ProductController extends Controller
             'original_price' => $request->input('original_price'),
             'warranty_month' => $request->input('warranty_month'),
             'description' => $request->input('description') ?? '',
-            'quantities' => 0
+            'quantities' => $request->input('quantities'),
         ]);
         $count = 0;
         while ($request->hasFile('image' . $count)) {
@@ -261,12 +262,12 @@ class ProductController extends Controller
                     'page' => 'Product Details',
                     'detailed_product' => $detailed_product,
                 ];
-                return  view('admin.products.detailed_product_details', $data);
+                return view('admin.products.detailed_product_details', $data);
             }
         }
         return abort(404);
     }
-    public function  update_detailed_product_ui(Request $request)
+    public function update_detailed_product_ui(Request $request)
     {
         $sku = $request->route('sku');
         $data = [
@@ -274,9 +275,9 @@ class ProductController extends Controller
             'detailed_product' => ProductDetail::with('images')->find($sku),
             'colors' => Color::all(),
         ];
-        return  view('admin.products.update_product_details', $data);
+        return view('admin.products.update_product_details', $data);
     }
-    public function  update_detailed_product(UpdateDetailedProduct $request)
+    public function update_detailed_product(UpdateDetailedProduct $request)
     {
         $sku = $request->route('sku');
         $detailed_product = ProductDetail::find($sku);
@@ -287,9 +288,10 @@ class ProductController extends Controller
             'original_price' => $request->input('original_price'),
             'warranty_month' => $request->input('warranty_month'),
             'description' => $request->input('description') ?? '',
+            'quantities' => $request->input('quantities') ?? '',
         ]);
         // handle images update here
-        $old_images =  explode(',', $request->input('old_images'));
+        $old_images = explode(',', $request->input('old_images'));
         ProductImage::where('sku', $sku)
             ->whereNotIn('product_image_id', $old_images)
             ->delete();
@@ -370,7 +372,7 @@ class ProductController extends Controller
         if ($search !== null) {
             $query->where('name', 'LIKE', '%' . $search . '%');
         }
-        // sorted 
+        // sorted
         if ($sorted_by === 'latest') {
             $query->orderBy('created_at', 'desc');
         } else if ($sorted_by === 'oldest') {
@@ -394,13 +396,13 @@ class ProductController extends Controller
         foreach ($products as $product) {
             $detailed_product =
                 $product->detailed_products
-                ->sortByDesc(function ($detailed_product) use ($today) {
-                    return $detailed_product->product_discounts
-                        ->where('discount.start_date', '<=', $today)
-                        ->where('discount.end_date', '>=', $today)
-                        ->sum('discount.percentage');
-                })
-                ->first() ?? $product->detailed_products->first();
+                    ->sortByDesc(function ($detailed_product) use ($today) {
+                        return $detailed_product->product_discounts
+                            ->where('discount.start_date', '<=', $today)
+                            ->where('discount.end_date', '>=', $today)
+                            ->sum('discount.percentage');
+                    })
+                    ->first() ?? $product->detailed_products->first();
 
             if (isset($detailed_product->images->first()->url)) {
                 $detailed_product->image = $detailed_product->images->first()->url;
